@@ -1,4 +1,4 @@
-[![Build Status](CI_BADGE_URL goes here)](REPO_URL goes here)
+[![Test](https://github.com/suho/google-search-ruby/actions/workflows/test.yml/badge.svg)](https://github.com/suho/google-search-ruby/actions/workflows/test.yml) [![Deploy Heroku](https://github.com/suho/google-search-ruby/actions/workflows/deploy_heroku.yml/badge.svg)](https://github.com/suho/google-search-ruby/actions/workflows/deploy_heroku.yml)
 
 ## Introduction
 
