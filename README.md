@@ -47,8 +47,7 @@ Add the following build settings to run the tests in the Docker environment via 
 
 ```sh
 # a unique `BRANCH_TAG` value to tag the Docker image
-# e.g $SEMAPHORE_BRANCH_ID or using the
-# or using nimblehq/branch-tag-action@v1.2 Github action
+# using nimblehq/branch-tag-action@v1.2 Github action
 export BRANCH_TAG= # unique value for tagging Docker image
 ```
 
@@ -85,10 +84,6 @@ docker push $DOCKER_IMAGE:$BRANCH_TAG
 ```sh
 docker-compose -f docker-compose.test.yml run test bin/bundle exec rake db:test:prepare
 ```
-
-#### Semaphore CI 2.0
-
-To setup the semaphore CI 2.0 for the project, please follow [this guideline](.semaphore/README.md)
 
 #### Github actions & Heroku Deployment
 

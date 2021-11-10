@@ -1,6 +1,4 @@
 .gitignore
-.semaphore
-.semaphore-cache
 log/
 tmp/
 !tmp/docker
