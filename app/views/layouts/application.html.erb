@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale %>'>
-  <head>
-    <title>Google Search</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
+<head>
+  <title>Google Search</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= render "layouts/header" %>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
+
+<body>
+  <%= render "shared/header" %>
+  <div class="container">
+    <%= render "shared/flash_messages" %>
+    <%= yield %>
+  </div>
+</body>
+
 </html>

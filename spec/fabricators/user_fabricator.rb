@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+Fabricator(:user) do
+  email { Faker::Internet.email }
+  password { 'password123' }
+  password_confirmation { 'password123' }
+end
