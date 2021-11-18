@@ -1,10 +1,12 @@
 <header class="navbar bg-dark text-white">
   <div class="container">
-    <%= link_to "Google Search", '#', id: "logo", class: "text-white text-decoration-none" %>
-    <nav>
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><%= link_to "Log in", '#', class: "btn btn-outline-light" %></li>
-      </ul>
-    </nav>
+    <%= link_to "Google Search", "/", id: "logo", class: "text-white text-decoration-none" %>
+    <ul class="nav">
+      <% if user_signed_in? %>
+        <li class="ml-3 m-auto">Hi <%= current_user.email %></li>
+      <% else %>
+        <li><%= link_to "Log in", '/', class: "btn btn-outline-light" %></li>
+      <% end %>
+    </ul>
   </div>
 </header>
