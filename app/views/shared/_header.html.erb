@@ -1,0 +1,15 @@
+<header class="navbar bg-dark text-white">
+  <div class="container">
+    <%= link_to "Google Search", "/", id: "logo", class: "text-white text-decoration-none" %>
+    <ul class="nav">
+      <% if user_signed_in? %>
+        <li class="ml-3 m-auto">Hi <%= current_user.email %></li>
+        <li class="ml-3">
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+        </li>
+      <% else %>
+        <li><%= link_to "Log in", new_user_session_path, class: "btn btn-outline-light" %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>
