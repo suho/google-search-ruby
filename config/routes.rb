@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :keywords, only: [:index]
+  resources :keywords, only: [:index, :create]
 end
