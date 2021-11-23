@@ -25,11 +25,11 @@ Rails.application.configure do
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
-  # Raise exceptions instead of rendering exception templates.
+  # Raise exceptions instead of rendering exception files.
   config.action_dispatch.show_exceptions = false
 
   # Disable request forgery protection in test environment.
@@ -67,9 +67,9 @@ Rails.application.configure do
 
   # Configure Bullet gem to detect N+1 queries
   config.after_initialize do
-    Bullet.enable                      = true
-    Bullet.bullet_logger               = true
-    Bullet.raise                       = true
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.raise = true
     Bullet.unused_eager_loading_enable = false
   end
 
