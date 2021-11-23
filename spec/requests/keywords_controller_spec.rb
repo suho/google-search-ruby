@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Keywords', type: :request do
-  describe 'GET /index' do
+RSpec.describe KeywordsController, type: :request do
+  describe 'GET #index' do
     it 'returns http success' do
-      get '/keywords/'
+      sign_in Fabricate(:user)
+      get :index
       expect(response).to have_http_status(:success)
     end
   end
