@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 class KeywordsController < ApplicationController
@@ -6,7 +7,7 @@ class KeywordsController < ApplicationController
 
   def create
     keywords = load_keywords
-    print(keywords)
+    Rails.logger.debug(keywords)
     redirect_to keywords_path
   end
 
