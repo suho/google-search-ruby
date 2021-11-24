@@ -7,6 +7,7 @@ RSpec.describe KeywordsController, type: :request do
     it 'returns http success' do
       sign_in Fabricate(:user)
       get :index
+
       expect(response).to have_http_status(:success)
     end
   end
