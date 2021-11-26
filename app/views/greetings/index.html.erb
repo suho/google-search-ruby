@@ -2,7 +2,7 @@
   <h2>Welcome to the Google Search Application!</h2>
   <p>Extracting large amounts of data from the Google search results page</p>
   <% if user_signed_in? %>
-    <%= link_to "Get Started Now!", "#", class: "btn btn-primary" %>
+    <%= link_to "Get Started Now!", keywords_path, class: "btn btn-primary" %>
   <% else %>
     <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-primary" %>
   <% end %>
