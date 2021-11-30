@@ -11,4 +11,13 @@ RSpec.describe KeywordsController, type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'POST #create' do
+    it 'redirects to keywords index' do
+      sign_in Fabricate(:user)
+      post :create, params: keywords_file_params('keywords_valid.csv')
+
+      expect(response).to redirect_to keywords_path
+    end
+  end
 end
