@@ -6,20 +6,21 @@ class KeywordsController < ApplicationController
   def index; end
 
   def create
-    keywords = load_keywords
-    Rails.logger.debug(keywords)
+    keywords = parse_keywords
     redirect_to keywords_path
   end
 
   private
 
-  def load_keywords
-    keywords_file = params[:keywords_file]
-    csv_data = CSV.read(keywords_file.path)
-    keywords = []
-    csv_data.each do |row|
-      keywords.append(row.first)
+  def parse_keywords
+    begin
+      keywords_file = params[:keywords_file]
+      csv_data = CSV.read(keywords_file.path)
+      csv_data.map do |row|
+        row.first
+      end
+    rescue
+      flash[:alert] = t("keywords.upload.invalid_file")
     end
-    keywords
   end
 end
