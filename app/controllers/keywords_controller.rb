@@ -6,7 +6,8 @@ class KeywordsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @keywords = pagy(current_user.keywords)
+    @pagy, keywords = pagy(current_user.keywords)
+    @decorated_keywords = keywords.map(&:decorated)
   end
 
   def create

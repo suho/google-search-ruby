@@ -18,7 +18,7 @@
   <% end %>
 
 </div>
-<% if not @keywords.empty? %>
+<% if not @decorated_keywords.empty? %>
   <%== pagy_bootstrap_nav(@pagy) %>
   <table class="table table-hover">
     <thead>
@@ -30,12 +30,12 @@
     </tr>
     </thead>
     <tbody>
-    <% @keywords.each_with_index { |keyword, index| %>
+    <% @decorated_keywords.each_with_index { |decorated_keyword, index| %>
       <tr>
         <th scope="row"><%= index + 1 %></th>
-        <td><%= keyword.keyword %></td>
-        <td><%= keyword.created_at %></td>
-        <td class="font-italic"><%= keyword.status %></td>
+        <td><%= decorated_keyword.keyword %></td>
+        <td><%= decorated_keyword.created_at %></td>
+        <td><%= raw decorated_keyword.status_html %></td>
       </tr>
     <% } %>
     </tbody>
