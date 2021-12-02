@@ -18,41 +18,25 @@
   <% end %>
 
 </div>
-
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Keyword</th>
-    <th scope="col">Created At</th>
-    <th scope="col">Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Hello World! Ruby on Rails</td>
-    <td>Wed, 1 Dec</td>
-    <td class="font-italic">Searching...</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td><a href="#">Swift</a></td>
-    <td>Wed, 1 Dec</td>
-    <td>Done</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Ruby on Rails</td>
-    <td>Wed, 1 Dec</td>
-    <td class="font-italic">Searching...</td>
-  </tr>
-  <tr>
-    <th scope="row">4</th>
-    <td><a href="#">Web Development</a></td>
-    <td>Wed, 1 Dec</td>
-    <td>Done</td>
-  </tr>
-  </tbody>
-</table>
-
+<% if not @keywords.empty? %>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Keyword</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @keywords.each_with_index { |keyword, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= keyword.keyword %></td>
+        <td><%= keyword.created_at %></td>
+        <td class="font-italic"><%= keyword.status %></td>
+      </tr>
+    <% } %>
+    </tbody>
+  </table>
+<% end %>
