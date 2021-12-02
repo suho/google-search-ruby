@@ -14,9 +14,8 @@ class KeywordsController < ApplicationController
 
   def parse_keywords
     keywords_file = params[:keywords_file]
-    csv_data = CSV.read(keywords_file.path)
-    csv_data.map(&:first)
-  rescue StandardError
-    flash[:alert] = t('keywords.upload.invalid_file')
+    ParseKeywordsService.new(keywords_file).call
+  rescue GoogleSearch::Errors::KeywordsError => e
+    flash[:alert] = e.message
   end
 end
