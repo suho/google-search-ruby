@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ParseKeywordsService
-
   def initialize(keywords_file)
     @keywords_file = keywords_file
   end
