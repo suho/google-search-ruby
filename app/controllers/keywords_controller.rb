@@ -15,7 +15,7 @@ class KeywordsController < ApplicationController
   def parse_keywords
     keywords_file = params[:keywords_file]
     ParseKeywordsService.new(keywords_file).call
-  rescue GoogleSearch::Errors::KeywordsError => exception
-    flash[:alert] = exception.message
+  rescue GoogleSearch::Errors::KeywordsError => e
+    flash[:alert] = e.message
   end
 end
