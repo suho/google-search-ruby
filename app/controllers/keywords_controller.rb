@@ -3,8 +3,10 @@
 require 'csv'
 
 class KeywordsController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @keywords = current_user.keywords
+    @pagy, @keywords = pagy(current_user.keywords)
   end
 
   def create
