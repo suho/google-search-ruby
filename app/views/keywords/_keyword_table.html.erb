@@ -1,0 +1,23 @@
+<% if not keyword_presenters.empty? %>
+  <%== pagy_bootstrap_nav(pagy) %>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Keyword</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% keyword_presenters.each_with_index do |keyword_presenter, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= keyword_presenter.keyword_text %></td>
+        <td><%= keyword_presenter.formatted_created_at %></td>
+        <td><%= raw keyword_presenter.status_html %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
