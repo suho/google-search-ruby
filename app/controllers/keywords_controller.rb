@@ -11,7 +11,6 @@ class KeywordsController < ApplicationController
   end
 
   def create
-    parse_keywords
     parse_keywords.each do |key|
       current_user.keywords.create(keyword: key)
     end
@@ -25,5 +24,6 @@ class KeywordsController < ApplicationController
     ParseKeywordsService.new(keywords_file).call
   rescue GoogleSearch::Errors::KeywordsError => e
     flash[:alert] = e.message
+    []
   end
 end
