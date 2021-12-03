@@ -6,9 +6,13 @@ class ParseKeywordsService
   end
 
   def call
-    csv_data = CSV.read(@keywords_file.path)
+    csv_data = CSV.read(keywords_file.path)
     csv_data.map(&:first)
   rescue StandardError
     raise GoogleSearch::Errors::KeywordsError, I18n.t('keywords.upload.invalid_file')
   end
+
+  private
+
+  attr_reader :keywords_file
 end
