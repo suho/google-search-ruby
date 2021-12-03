@@ -6,13 +6,18 @@ class KeywordsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, keywords = pagy(current_user.keywords)
-    @decorated_keywords = keywords.map(&:decorated)
+    pagy, keywords = pagy(current_user.keywords)
+    keyword_presenters = keywords.map { |keyword| KeywordPresenter.new(keyword) }
+
+    render locals: {
+      pagy: pagy,
+      keyword_presenters: keyword_presenters
+    }
   end
 
   def create
-    parse_keywords.each do |key|
-      current_user.keywords.create(keyword: key)
+    parse_keywords.each do |keyword|
+      current_user.keywords.create(keyword: keyword)
     end
     redirect_to keywords_path
   end

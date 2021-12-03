@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Fabricator(:keyword) do
-  keyword 'MyString'
-  status ''
-  user nil
+  keyword FFaker::FreedomIpsum.word
+  user Fabricate(:user)
 end

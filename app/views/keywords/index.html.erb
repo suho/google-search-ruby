@@ -18,26 +18,4 @@
   <% end %>
 
 </div>
-<% if not @decorated_keywords.empty? %>
-  <%== pagy_bootstrap_nav(@pagy) %>
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Keyword</th>
-      <th scope="col">Created At</th>
-      <th scope="col">Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @decorated_keywords.each_with_index { |decorated_keyword, index| %>
-      <tr>
-        <th scope="row"><%= index + 1 %></th>
-        <td><%= decorated_keyword.keyword %></td>
-        <td><%= decorated_keyword.created_at %></td>
-        <td><%= raw decorated_keyword.status_html %></td>
-      </tr>
-    <% } %>
-    </tbody>
-  </table>
-<% end %>
+<%= render partial: "keyword_table", locals: { pagy: pagy, keyword_presenters: keyword_presenters } %>
