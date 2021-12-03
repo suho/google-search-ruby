@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2021_12_02_054844) do
   enable_extension "plpgsql"
 
   create_table "keywords", force: :cascade do |t|
-    t.string "keyword"
-    t.integer "status", default: 0
+    t.string "keyword", null: false
+    t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
