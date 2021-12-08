@@ -458,7 +458,6 @@ GEM
       rugged (>= 0.27, < 1.2)
     unicode-display_width (2.1.0)
     uniform_notifier (1.14.2)
-    user_agent_randomizer (0.1.1)
     vcr (6.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -547,7 +546,6 @@ DEPENDENCIES
   timecop
   tzinfo-data
   undercover
-  user_agent_randomizer
   vcr
   webdrivers
   webmock
