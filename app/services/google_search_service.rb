@@ -5,7 +5,8 @@ class GoogleSearchService
 
   def initialize(keyword:)
     @uri = URI("#{BASE_URL}?q=#{CGI.escape(keyword)}")
-    @user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15'
+    @user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like Gecko) '\
+                  'Version/11.1.2 Safari/605.1.15'
   end
 
   def call
