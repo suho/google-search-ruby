@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class KeywordsFormValidator < ActiveModel::Validator
-
   def validate(form)
     @form = form
     validate_file
@@ -26,7 +25,7 @@ class KeywordsFormValidator < ActiveModel::Validator
   end
 
   def nil?
-    keywords_file == nil
+    keywords_file.nil?
   end
 
   def extension_valid?

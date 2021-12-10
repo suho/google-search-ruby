@@ -16,7 +16,7 @@ class KeywordsForm
     @file = file
 
     return false unless valid?
-    
+
     keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
     # rubocop:disable Rails::SkipsModelValidations
     @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
@@ -36,6 +36,7 @@ class KeywordsForm
 
   def keyword_record(keyword)
     return nil if keyword.blank?
+
     current_time = Time.current
     {
       user_id: user.id,

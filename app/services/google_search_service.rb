@@ -12,6 +12,7 @@ class GoogleSearchService
   def call
     data = HTTParty.get(@uri, { headers: { 'User-Agent' => user_agent } })
     raise GoogleSearch::Errors::SearchKeywordError unless data.response.code == '200'
+
     data
   end
 
