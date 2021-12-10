@@ -30,6 +30,7 @@ class KeywordsForm
 
   def keyword_record(keyword)
     return nil if keyword.blank?
+
     {
       user_id: user.id,
       keyword: keyword,
@@ -37,7 +38,4 @@ class KeywordsForm
       updated_at: Time.current
     }
   end
-
 end
-
-
