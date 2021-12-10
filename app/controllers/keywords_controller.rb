@@ -20,7 +20,7 @@ class KeywordsController < ApplicationController
       SearchKeywordsJob.perform_later(keywords_form.keyword_ids)
       flash[:notice] = t('keywords.upload.success')
     else
-      flash[:alert] = keywords_form.errors.first
+      flash[:alert] = t('keywords.upload.invalid_file')
     end
     redirect_to keywords_path
   end

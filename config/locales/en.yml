@@ -34,4 +34,5 @@ en:
     save:
       error: 'Error while saving!'
     upload:
+      invalid_file: 'Invalid file!'
       success: 'Upload success!'

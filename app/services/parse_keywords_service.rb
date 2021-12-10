@@ -9,7 +9,7 @@ class ParseKeywordsService
     csv_data = CSV.read(keywords_file.path)
     csv_data.map(&:first)
   rescue StandardError
-    raise GoogleSearch::Errors::KeywordsError, I18n.t('keywords.upload.invalid_file')
+    false
   end
 
   private
