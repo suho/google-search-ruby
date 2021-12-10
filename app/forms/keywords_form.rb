@@ -2,18 +2,22 @@
 
 class KeywordsForm
   include ActiveModel::Model
+  include ActiveModel::Validations
 
-  attr_reader :keyword_ids
+  validates_with KeywordsFormValidator
+
+  attr_reader :file, :keyword_ids
 
   def initialize(user)
     @user = user
   end
 
   def save(file)
-    keywords = parse_keywords(file)
-    return false unless keywords
+    @file = file
 
-    keyword_records = keywords.map { |keyword| keyword_record(keyword) }
+    return false unless valid?
+    
+    keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
     # rubocop:disable Rails::SkipsModelValidations
     @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
     # rubocop:enable Rails::SkipsModelValidations
@@ -25,18 +29,19 @@ class KeywordsForm
 
   attr_reader :user
 
-  def parse_keywords(keywords_file)
-    ParseKeywordsService.new(keywords_file).call
+  def parse_keywords
+    csv_data = CSV.read(file.path)
+    csv_data.map(&:first)
   end
 
   def keyword_record(keyword)
     return nil if keyword.blank?
-
+    current_time = Time.current
     {
       user_id: user.id,
       keyword: keyword,
-      created_at: Time.current,
-      updated_at: Time.current
+      created_at: current_time,
+      updated_at: current_time
     }
   end
 end

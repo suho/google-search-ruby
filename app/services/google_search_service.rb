@@ -11,12 +11,8 @@ class GoogleSearchService
 
   def call
     data = HTTParty.get(@uri, { headers: { 'User-Agent' => user_agent } })
-    return false unless data.response.code == '200'
-
+    raise GoogleSearch::Errors::SearchKeywordError unless data.response.code == '200'
     data
-  rescue GoogleSearch::Errors::SearchKeywordError => e
-    Rails.logger.error "Fetch data with '#{keyword}' thrown an error: #{e}"
-    false
   end
 
   private
