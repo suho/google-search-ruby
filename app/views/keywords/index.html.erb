@@ -5,7 +5,7 @@
   <%= form_with url: keywords_path do |f| %>
 
     <div class="form-group">
-      <%= f.file_field :keywords_file, require: true, accept: 'text/csv' %>
+      <%= f.file_field :keywords_file, accept: 'text/csv', require: true %>
     </div>
 
     <div class="form-group">
