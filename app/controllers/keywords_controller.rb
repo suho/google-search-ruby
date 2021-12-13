@@ -17,10 +17,10 @@ class KeywordsController < ApplicationController
 
   def create
     if save_keywords
-      SearchKeywordsJob.perform_later(keywords_form.keyword_ids)
+      # SearchKeywordsJob.perform_later(keywords_form.keyword_ids)
       flash[:notice] = t('keywords.upload.success')
     else
-      flash[:alert] = t('keywords.upload.invalid_file')
+      flash[:alert] = keywords_form.errors.full_messages.first
     end
     redirect_to keywords_path
   end

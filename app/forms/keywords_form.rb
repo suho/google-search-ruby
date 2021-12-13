@@ -2,7 +2,6 @@
 
 class KeywordsForm
   include ActiveModel::Model
-  include ActiveModel::Validations
 
   validates_with KeywordsFormValidator
 
@@ -17,12 +16,15 @@ class KeywordsForm
 
     return false unless valid?
 
-    keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
-    # rubocop:disable Rails::SkipsModelValidations
-    @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
-    # rubocop:enable Rails::SkipsModelValidations
-  rescue ActiveRecord::ActiveRecordError
-    false
+    begin
+      keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
+      # rubocop:disable Rails::SkipsModelValidations
+      @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
+      # rubocop:enable Rails::SkipsModelValidations
+    rescue ActiveRecord::ActiveRecordError
+      errors.add(:base, I18n.t('keywords.upload.invalid_file'))
+    end
+    errors.empty?
   end
 
   private
@@ -37,12 +39,11 @@ class KeywordsForm
   def keyword_record(keyword)
     return nil if keyword.blank?
 
-    current_time = Time.current
     {
       user_id: user.id,
       keyword: keyword,
-      created_at: current_time,
-      updated_at: current_time
+      created_at: Time.current,
+      updated_at: Time.current
     }
   end
 end

@@ -11,9 +11,13 @@ class KeywordsFormValidator < ActiveModel::Validator
   attr_reader :form
 
   def validate_file
-    add_error(I18n.t('keywords.upload.invalid_file')) if nil?
-    add_error(I18n.t('keywords.upload.invalid_extension')) unless extension_valid?
-    add_error(I18n.t('keywords.upload.invalid_size')) unless size_valid?
+    if !keywords_file
+      add_error(I18n.t('keywords.upload.invalid_file'))
+    elsif extension_valid?
+      add_error(I18n.t('keywords.upload.invalid_size')) unless size_valid?
+    else
+      add_error(I18n.t('keywords.upload.invalid_extension'))
+    end
   end
 
   def keywords_file
@@ -22,10 +26,6 @@ class KeywordsFormValidator < ActiveModel::Validator
 
   def add_error(message)
     form.errors.add(:base, message)
-  end
-
-  def nil?
-    keywords_file.nil?
   end
 
   def extension_valid?
