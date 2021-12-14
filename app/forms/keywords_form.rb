@@ -24,6 +24,7 @@ class KeywordsForm
     rescue ActiveRecord::ActiveRecordError
       errors.add(:base, I18n.t('keywords.upload.invalid_file'))
     end
+
     errors.empty?
   end
 
