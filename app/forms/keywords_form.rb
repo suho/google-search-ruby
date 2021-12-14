@@ -5,7 +5,7 @@ class KeywordsForm
 
   validates_with KeywordsFormValidator
 
-  attr_reader :file
+  attr_reader :file, :keyword_ids
 
   def initialize(user)
     @user = user
@@ -19,7 +19,7 @@ class KeywordsForm
     begin
       keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
       # rubocop:disable Rails::SkipsModelValidations
-      Keyword.insert_all(keyword_records)
+      @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
       # rubocop:enable Rails::SkipsModelValidations
     rescue ActiveRecord::ActiveRecordError
       errors.add(:base, I18n.t('keywords.upload.invalid_file'))
