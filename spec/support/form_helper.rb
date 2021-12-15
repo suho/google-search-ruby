@@ -5,7 +5,7 @@ module Form
     def save_file(file_path)
       if file_path
         file = file_fixture(file_path)
-        file_content_type = MIME::Types.type_for(file.extname).first.content_type
+        file_content_type = Rack::Mime::MIME_TYPES[file.extname]
         file = Rack::Test::UploadedFile.new(file, file_content_type)
       else
         file = nil
