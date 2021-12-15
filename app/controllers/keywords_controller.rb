@@ -26,11 +26,11 @@ class KeywordsController < ApplicationController
 
   private
 
-  def keywords_form
-    @keywords_form ||= KeywordsForm.new(current_user)
-  end
-
   def save_keywords
     keywords_form.save(params[:keywords_file])
+  end
+
+  def keywords_form
+    @keywords_form ||= KeywordsForm.new(current_user)
   end
 end

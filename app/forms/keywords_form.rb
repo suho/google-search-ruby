@@ -14,7 +14,7 @@ class KeywordsForm
   def save(file)
     @file = file
 
-    return false unless valid?
+    return false if invalid?
 
     begin
       keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
