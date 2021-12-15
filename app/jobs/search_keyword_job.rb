@@ -7,18 +7,8 @@ class SearchKeywordJob < ApplicationJob
     keyword = Keyword.find(keyword_id)
     html = GoogleSearchService.new(keyword: keyword.keyword).call
     utf_8_html = html.force_encoding('iso8859-1').encode('utf-8')
-    update_keyword(keyword, utf_8_html)
+    keyword.add_html(utf_8_html)
   rescue ActiveRecord::RecordNotFound, GoogleSearch::Errors::SearchKeywordError, ActiveRecord::StatementInvalid
-    update_keyword_status keyword, :failed
-  end
-
-  private
-
-  def update_keyword_status(keyword, status)
-    keyword.update(status: status)
-  end
-
-  def update_keyword(keyword, html)
-    keyword.update({ html: html, status: :completed })
+    keyword.update_status(failed)
   end
 end

@@ -19,7 +19,7 @@ class KeywordsForm
     begin
       keyword_records = parse_keywords.map { |keyword| keyword_record(keyword) }
       # rubocop:disable Rails::SkipsModelValidations
-      @keyword_ids = Keyword.insert_all(keyword_records).map { |hash| hash['id'] }
+      @keyword_ids = Keyword.insert_all(keyword_records).map { |keyword| keyword['id'] }
       # rubocop:enable Rails::SkipsModelValidations
     rescue ActiveRecord::ActiveRecordError
       errors.add(:base, I18n.t('keywords.upload.invalid_file'))
