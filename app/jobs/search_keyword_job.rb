@@ -9,6 +9,6 @@ class SearchKeywordJob < ApplicationJob
     utf_8_html = html.force_encoding('iso8859-1').encode('utf-8')
     keyword.add_html(utf_8_html)
   rescue ActiveRecord::RecordNotFound, GoogleSearch::Errors::SearchKeywordError, ActiveRecord::StatementInvalid
-    keyword.update_status(failed)
+    keyword.update_status(:failed)
   end
 end
