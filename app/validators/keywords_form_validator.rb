@@ -13,10 +13,10 @@ class KeywordsFormValidator < ActiveModel::Validator
   def validate_file
     if !keywords_file
       add_error(I18n.t('keywords.upload.invalid_file'))
-    elsif extension_valid?
-      add_error(I18n.t('keywords.upload.invalid_size')) unless size_valid?
-    else
+    elsif !extension_valid?
       add_error(I18n.t('keywords.upload.invalid_extension'))
+    elsif !size_valid?
+      add_error(I18n.t('keywords.upload.invalid_size'))
     end
   end
 
