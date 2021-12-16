@@ -17,6 +17,7 @@ class KeywordsController < ApplicationController
 
   def create
     if save_keywords
+      SearchKeywordsJob.perform_later(keywords_form.keyword_ids)
       flash[:notice] = t('keywords.upload.success')
     else
       flash[:alert] = keywords_form.errors.full_messages.first
