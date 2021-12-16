@@ -6,7 +6,7 @@ class KeywordsController < ApplicationController
   include Pagy::Backend
 
   def index
-    pagy, keywords = pagy(current_user.keywords)
+    pagy, keywords = pagy(current_user.keywords.order('created_at DESC'))
     keyword_presenters = keywords.map { |keyword| KeywordPresenter.new(keyword) }
 
     render locals: {
@@ -16,19 +16,21 @@ class KeywordsController < ApplicationController
   end
 
   def create
-    parse_keywords.each do |keyword|
-      current_user.keywords.create(keyword: keyword)
+    if save_keywords
+      flash[:notice] = t('keywords.upload.success')
+    else
+      flash[:alert] = keywords_form.errors.full_messages.first
     end
     redirect_to keywords_path
   end
 
   private
 
-  def parse_keywords
-    keywords_file = params[:keywords_file]
-    ParseKeywordsService.new(keywords_file).call
-  rescue GoogleSearch::Errors::KeywordsError => e
-    flash[:alert] = e.message
-    []
+  def save_keywords
+    keywords_form.save(params[:keywords_file])
+  end
+
+  def keywords_form
+    @keywords_form ||= KeywordsForm.new(current_user)
   end
 end

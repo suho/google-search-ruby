@@ -2,5 +2,6 @@
 
 Fabricator(:keyword) do
   keyword FFaker::FreedomIpsum.word
-  user Fabricate(:user)
+  status :in_progress
+  user { Fabricate(:user) }
 end

@@ -31,5 +31,10 @@
 
 en:
   keywords:
+    save:
+      error: 'Error while saving!'
     upload:
-      invalid_file: "Invalid file!"
+      invalid_extension: 'Should upload a csv file!'
+      invalid_size: 'Should upload from 1 to 1000 keywords'
+      invalid_file: 'Invalid file!'
+      success: 'Upload success!'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_054844) do
+ActiveRecord::Schema.define(version: 2021_12_07_070352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 2021_12_02_054844) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "ads_top_count"
+    t.integer "ads_page_count"
+    t.integer "non_ads_count"
+    t.integer "total_links_count"
+    t.text "html"
     t.index ["user_id"], name: "index_keywords_on_user_id"
   end
 
