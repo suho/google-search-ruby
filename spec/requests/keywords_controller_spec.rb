@@ -16,7 +16,7 @@ RSpec.describe KeywordsController, type: :request do
     context 'when there is an upload file' do
       it 'redirects to keywords index' do
         sign_in Fabricate(:user)
-        post :create, params: keywords_file_params('keywords_valid.csv')
+        post :create, params: keywords_file_params('valid_keywords.csv')
 
         expect(response).to redirect_to keywords_path
       end
