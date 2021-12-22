@@ -7,6 +7,8 @@ class Keyword < ApplicationRecord
 
   enum status: { in_progress: 0, completed: 1, failed: 2 }
 
+  has_many :links, dependent: :destroy
+
   def update_status(status)
     update(status: status)
   end

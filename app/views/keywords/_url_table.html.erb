@@ -1,0 +1,20 @@
+<% if not urls.empty? %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">URL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% urls.each_with_index do |url, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><a href="<%= url %>"><%= url %></a></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <b><%= urls.count %></b>
+<% end %>

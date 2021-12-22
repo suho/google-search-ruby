@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_070352) do
+ActiveRecord::Schema.define(version: 2021_12_22_073903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_12_07_070352) do
     t.index ["user_id"], name: "index_keywords_on_user_id"
   end
 
+  create_table "links", force: :cascade do |t|
+    t.citext "url", null: false
+    t.integer "link_type", null: false
+    t.bigint "keyword_id", null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["keyword_id"], name: "index_links_on_keyword_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.citext "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,4 +52,5 @@ ActiveRecord::Schema.define(version: 2021_12_07_070352) do
   end
 
   add_foreign_key "keywords", "users"
+  add_foreign_key "links", "keywords"
 end

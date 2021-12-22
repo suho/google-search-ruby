@@ -31,4 +31,16 @@ RSpec.describe KeywordsController, type: :request do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'given a valid id' do
+      it 'returns http success' do
+        keyword = Fabricate(:keyword)
+        sign_in keyword.user
+        get :show, params: { id: keyword.id }
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
 end

@@ -5,9 +5,7 @@ class KeywordPresenter
     @keyword = keyword
   end
 
-  def keyword_id
-    keyword.id
-  end
+  delegate :id, to: :keyword, prefix: true
 
   def keyword_text
     keyword.keyword
@@ -21,24 +19,30 @@ class KeywordPresenter
     keyword.created_at.strftime('%F %H:%M:%S')
   end
 
-  def keyword_completed?
-    keyword.completed?
-  end
+  delegate :completed?, to: :keyword, prefix: true
 
   def ads_top_count
-    keyword.ads_top_count
+    keyword.ads_top_count || 0
   end
 
   def ads_page_count
-    keyword.ads_page_count
+    keyword.ads_page_count || 0
+  end
+
+  def ads_top_urls
+    keyword.links.filter_map { |link| link.url if link.link_type == 'ads_top' }
   end
 
   def non_ads_count
-    keyword.non_ads_count
+    keyword.non_ads_count || 0
+  end
+
+  def non_ads_urls
+    keyword.links.filter_map { |link| link.url if link.link_type == 'non_ads' }
   end
 
   def total_links_count
-    keyword.total_links_count
+    keyword.total_links_count || 0
   end
 
   def status_html
