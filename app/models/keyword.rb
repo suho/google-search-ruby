@@ -11,7 +11,14 @@ class Keyword < ApplicationRecord
     update(status: status)
   end
 
-  def add_html(html)
-    update(html: html, status: :completed)
+  def update_data(html:, parse_result:)
+    update(
+      html: html,
+      status: :completed,
+      ads_top_count: parse_result[:ads_top_count],
+      ads_page_count: parse_result[:ads_page_count],
+      non_ads_count: parse_result[:non_ads_count],
+      total_links_count: parse_result[:total_links_count]
+    )
   end
 end

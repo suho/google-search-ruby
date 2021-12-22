@@ -13,7 +13,13 @@
     <% keyword_presenters.each_with_index do |keyword_presenter, index| %>
       <tr>
         <th scope="row"><%= index + 1 %></th>
-        <td><%= keyword_presenter.keyword_text %></td>
+        <td>
+          <% if keyword_presenter.keyword_completed? %>
+            <%= link_to keyword_presenter.keyword_text, keyword_path(keyword_presenter.keyword_id) %>
+          <% else %>
+            <%= keyword_presenter.keyword_text %>
+          <% end %>
+        </td>
         <td><%= keyword_presenter.formatted_created_at %></td>
         <td><%= raw keyword_presenter.status_html %></td>
       </tr>
