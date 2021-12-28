@@ -1,21 +1,3 @@
-<div class="modal-dialog modal-content p-4">
-
-  <h4>Upload Keywords File</h4><br>
-
-  <%= form_with url: keywords_path do |f| %>
-
-    <div class="form-group">
-      <%= f.file_field :keywords_file, accept: 'text/csv', required: true %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "Upload and Search", class: "form-control btn btn-primary" %>
-    </div>
-    <div class="form-group">
-      <%= link_to "Need template file? Download here!", "/files/template.csv" %><br/>
-    </div>
-
-  <% end %>
-
-</div>
+<%= render partial: "upload_file_form" %>
+<%= render partial: "search_form" %>
 <%= render partial: "keyword_table", locals: { pagy: pagy, keyword_presenters: keyword_presenters } %>

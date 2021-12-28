@@ -6,7 +6,8 @@ class KeywordsController < ApplicationController
   include Pagy::Backend
 
   def index
-    pagy, keywords = pagy(current_user.keywords.order('created_at DESC'))
+    keywords_query.call
+    pagy, keywords = pagy(keywords_query.keywords)
     keyword_presenters = keywords.map { |keyword| KeywordPresenter.new(keyword) }
 
     render locals: {
@@ -42,5 +43,9 @@ class KeywordsController < ApplicationController
 
   def keywords_form
     @keywords_form ||= KeywordsForm.new(current_user)
+  end
+
+  def keywords_query
+    @keywords_query ||= KeywordsQuery.new(current_user.keywords, params)
   end
 end
