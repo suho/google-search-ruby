@@ -13,14 +13,14 @@ class Keyword < ApplicationRecord
     update(status: status)
   end
 
-  def update_data(html:, parse_result:)
-    update(
+  def update_result(html:, parse_service:, status:)
+    update!(
       html: html,
-      status: :completed,
-      ads_top_count: parse_result[:ads_top_count],
-      ads_page_count: parse_result[:ads_page_count],
-      non_ads_count: parse_result[:non_ads_count],
-      total_links_count: parse_result[:total_links_count]
+      status: status,
+      ads_top_count: parse_service.ads_top_count,
+      ads_page_count: parse_service.ads_page_count,
+      non_ads_count: parse_service.non_ads_count,
+      total_links_count: parse_service.total_links_count
     )
   end
 end

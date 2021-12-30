@@ -6,9 +6,8 @@ class SearchKeywordJob < ApplicationJob
   def perform(keyword_id)
     @keyword = Keyword.find(keyword_id)
     begin
-      html = GoogleSearchService.new(keyword: keyword.keyword).call
-      parse_result = GoogleParseService.new(html: html).result
-      save_data(html, parse_result)
+      html_response = GoogleSearchService.new(keyword: keyword.keyword).call
+      save_keyword_results(html_response, GoogleParseService.new(html: html_response))
     rescue ActiveRecord::RecordNotFound, GoogleSearch::Errors::SearchKeywordError, ActiveRecord::StatementInvalid
       keyword.update_status(:failed)
     end
@@ -18,12 +17,12 @@ class SearchKeywordJob < ApplicationJob
 
   attr_reader :keyword
 
-  def save_data(html, parse_result)
+  def save_keyword_results(html, parse_service)
     Keyword.transaction do
       # rubocop:disable Rails::SkipsModelValidations
-      keyword.links.insert_all(parse_result[:all_links])
+      keyword.links.insert_all(parse_service.all_links)
       # rubocop:enable Rails::SkipsModelValidations
-      keyword.update_data(html: html, parse_result: parse_result)
+      keyword.update_result(html: html, parse_service: parse_service, status: :completed)
     end
   end
 end

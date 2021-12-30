@@ -7,6 +7,8 @@ class KeywordPresenter
 
   delegate :id, to: :keyword, prefix: true
 
+  delegate :completed?, to: :keyword, prefix: true
+
   def keyword_text
     keyword.keyword
   end
@@ -18,8 +20,6 @@ class KeywordPresenter
   def formatted_created_at
     keyword.created_at.strftime('%F %H:%M:%S')
   end
-
-  delegate :completed?, to: :keyword, prefix: true
 
   def ads_top_count
     keyword.ads_top_count || 0

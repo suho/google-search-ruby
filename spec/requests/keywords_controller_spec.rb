@@ -41,6 +41,14 @@ RSpec.describe KeywordsController, type: :request do
 
         expect(response).to have_http_status(:success)
       end
+
+      it 'renders the show template' do
+        keyword = Fabricate(:keyword)
+        sign_in keyword.user
+        get :show, params: { id: keyword.id }
+
+        expect(response).to render_template(:show)
+      end
     end
   end
 end

@@ -28,6 +28,7 @@ class KeywordsController < ApplicationController
   def show
     keyword = Keyword.includes(:links).find(params[:id])
     presenter = KeywordPresenter.new(keyword)
+
     render locals: {
       presenter: presenter
     }
