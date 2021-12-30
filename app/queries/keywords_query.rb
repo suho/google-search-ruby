@@ -1,5 +1,6 @@
-class KeywordsQuery
+# frozen_string_literal: true
 
+class KeywordsQuery
   attr_reader :keywords
 
   def initialize(keywords, filters)
