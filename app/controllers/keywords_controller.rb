@@ -46,6 +46,10 @@ class KeywordsController < ApplicationController
   end
 
   def keywords_query
-    @keywords_query ||= KeywordsQuery.new(current_user.keywords, params)
+    @keywords_query ||= KeywordsQuery.new(current_user.keywords, permitted_params)
+  end
+
+  def permitted_params
+    params.permit(:keyword)
   end
 end
