@@ -1,0 +1,22 @@
+<div class="center jumbotron mt-2 py-5 px-4">
+  <p>Keyword: <b><%= presenter.keyword_text %></b></p><br>
+  <p>Number of AdWords advertisers in the top position: <b><%= presenter.ads_top_count %></b></p><br>
+  <p>Total number of AdWords advertisers on the page: <b><%= presenter.ads_page_count %></b></p><br>
+  <p>Number of the non-AdWords results on the page: <b><%= presenter.non_ads_count %></b></p><br>
+  <p>Total number of links (all of them) on the page: <b><%= presenter.total_links_count %></b></p><br>
+  <p>
+    URLs of the AdWords advertisers in the top
+    position: <%= render partial: "url_table", locals: { urls: presenter.ads_top_urls } %>
+  </p>
+  <p>
+    URLs of the non-AdWords results on the
+    page: <%= render partial: "url_table", locals: { urls: presenter.non_ads_urls } %>
+  </p>
+
+  <button class="btn btn-secondary" data-toggle="collapse" data-target="#showBrowserResult" aria-expanded="false" aria-controls="showBrowserResult">
+    Result in Browser
+  </button>
+  <div id="showBrowserResult" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+    <iframe srcdoc="<%= presenter.keyword_result_html %>" title="Google View Result" style='pointer-events: none;' width="100%" height="1000px"></iframe>
+  </div>
+</div>

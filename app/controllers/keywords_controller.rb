@@ -25,6 +25,15 @@ class KeywordsController < ApplicationController
     redirect_to keywords_path
   end
 
+  def show
+    keyword = Keyword.includes(:links).find(params[:id])
+    presenter = KeywordPresenter.new(keyword)
+
+    render locals: {
+      presenter: presenter
+    }
+  end
+
   private
 
   def save_keywords
