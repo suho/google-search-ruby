@@ -34,7 +34,13 @@ en:
     save:
       error: 'Error while saving!'
     upload:
+      title: 'Upload Keywords File'
+      button: 'Upload and Search'
+      template: 'Need template file? Download here!'
       invalid_extension: 'Should upload a csv file!'
       invalid_size: 'Should upload from 1 to 1000 keywords'
       invalid_file: 'Invalid file!'
       success: 'Upload success!'
+    search:
+      placeholder: 'Search keyword!'
+      button: 'Search'
