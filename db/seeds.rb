@@ -8,6 +8,5 @@
 
 # if there is no OAuth application created, create them
 if Doorkeeper::Application.count.zero?
-  Doorkeeper::Application.create(name: "iOS client", redirect_uri: "", scopes: "")
-  Doorkeeper::Application.create(name: "Android client", redirect_uri: "", scopes: "")
+  Doorkeeper::Application.create(name: "Client App", redirect_uri: "", scopes: "")
 end
