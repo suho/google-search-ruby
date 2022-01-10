@@ -5,7 +5,7 @@ module Doorkeeper
     def body
       {
         data: {
-          id: "#{@token.id}",
+          id: @token.id.to_s,
           type: 'token',
           attributes: super
         }
