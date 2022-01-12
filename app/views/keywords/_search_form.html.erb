@@ -1,0 +1,10 @@
+<div class="modal-dialog modal-content p-4">
+  <%= form_with url: keywords_path, method: :get do |f| %>
+    <div class="form-group">
+      <%= f.text_field :keyword, placeholder: I18n.t('keywords.search.placeholder'), class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit I18n.t('keywords.search.button'), class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
