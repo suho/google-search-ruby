@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :keywords, only: [:create]
+
       # OAuth2 Doorkeeper
       use_doorkeeper do
         controllers tokens: 'tokens'
