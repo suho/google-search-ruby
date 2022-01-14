@@ -14,7 +14,8 @@ module API
           render_error(
             detail: keywords_form.errors.full_messages.first,
             code: :invalid_file,
-            status: :unprocessable_entity)
+            status: :unprocessable_entity
+          )
         end
       end
 
