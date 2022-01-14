@@ -5,4 +5,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :keywords, only: [:index, :create, :show]
+
+  namespace :api do
+    namespace :v1 do
+      # OAuth2 Doorkeeper
+      use_doorkeeper do
+        controllers tokens: 'tokens'
+        skip_controllers :authorizations, :applications, :authorized_applications
+      end
+    end
+  end
 end
