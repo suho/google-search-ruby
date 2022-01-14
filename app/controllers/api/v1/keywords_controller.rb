@@ -5,13 +5,13 @@ module API
     class KeywordsController < ApplicationController
       include Pagy::Backend
 
+      before_action :set_keyword, only: :show
+
       def index
         keywords_query.call
         pagy, keywords = pagy_array(keywords_query.keywords, pagination_params)
 
         render json: KeywordSerializer.new(keywords, meta: meta_from_pagy(pagy))
-      rescue Pagy::OverflowError
-        render status: :not_found
       end
 
       def create
@@ -28,6 +28,10 @@ module API
         end
       end
 
+      def show
+        render json: KeywordSerializer.new(@keyword, include: [:links], params: { show_detail: true })
+      end
+
       private
 
       def save_keywords
@@ -40,6 +44,10 @@ module API
 
       def keywords_query
         @keywords_query ||= KeywordsQuery.new(current_user.keywords, permitted_params)
+      end
+
+      def set_keyword
+        @keyword = current_user.keywords.find_by!(id: params[:id])
       end
 
       def permitted_params

@@ -126,4 +126,34 @@ RSpec.describe API::V1::KeywordsController, type: :request do
       end
     end
   end
+
+  describe 'GET#show' do
+    context 'given a valid survey ID' do
+      it 'returns success status' do
+        user = api_sign_in
+        Fabricate(:keyword, user: user, id: 1)
+        get :show, params: { id: 1 }
+
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns the expected keyword' do
+        user = api_sign_in
+        Fabricate(:keyword, user: user, id: 1)
+        get :show, params: { id: 1 }
+        body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(body[:data][:id]).to eq('1')
+      end
+    end
+
+    context 'given an invalid survey ID' do
+      it 'returns not_found status' do
+        api_sign_in
+        get :show, params: { id: -1 }
+
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
