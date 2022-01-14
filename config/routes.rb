@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         controllers tokens: 'tokens'
         skip_controllers :authorizations, :applications, :authorized_applications
       end
+
+      devise_scope :user do
+        resources :registrations, only: :create
+      end
     end
   end
 end

@@ -1,4 +1,4 @@
-require: 
+require:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
@@ -44,3 +44,6 @@ RSpec/ContextWording:
   Prefixes:
     - when
     - given
+
+RSpec/NestedGroups:
+  Max: 5
