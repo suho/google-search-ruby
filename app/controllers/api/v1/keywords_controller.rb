@@ -3,7 +3,6 @@
 module API
   module V1
     class KeywordsController < ApplicationController
-      include Pagy::Backend
 
       def create
         if save_keywords
@@ -27,14 +26,6 @@ module API
 
       def keywords_form
         @keywords_form ||= KeywordsForm.new(current_user)
-      end
-
-      def keywords_query
-        @keywords_query ||= KeywordsQuery.new(current_user.keywords, permitted_params)
-      end
-
-      def permitted_params
-        params.permit(:keyword)
       end
     end
   end
