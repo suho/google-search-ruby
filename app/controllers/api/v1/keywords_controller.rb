@@ -3,7 +3,6 @@
 module API
   module V1
     class KeywordsController < ApplicationController
-
       def create
         if save_keywords
           SearchKeywordsJob.perform_later(keywords_form.keyword_ids)
