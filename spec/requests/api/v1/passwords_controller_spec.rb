@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe API::V1::PasswordsController, type: :controller do
+RSpec.describe API::V1::PasswordsController, type: :request do
   describe 'POST#create', devise_mapping: true do
     context 'given an invalid oauth application' do
       it 'returns forbidden status' do

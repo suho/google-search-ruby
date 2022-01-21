@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe API::V1::RegistrationsController, type: :controller do
+RSpec.describe API::V1::RegistrationsController, type: :request do
   describe 'POST#create', devise_mapping: true do
     context 'given a valid oauth application' do
       context 'given valid params' do
