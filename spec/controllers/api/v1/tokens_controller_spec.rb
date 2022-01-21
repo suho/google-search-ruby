@@ -8,7 +8,7 @@ RSpec.describe API::V1::TokensController, type: :controller do
       it 'returns success status' do
         application = Fabricate(:doorkeeper_application)
         access_token = Fabricate(:access_token, application_id: application.id)
-        post :revoke, params: { token: access_token.token, client_id: application.uid, client_secret: application.secret }
+        post :revoke, params: { token: access_token.token }.merge(oauth_application_params(application))
 
         expect(response).to have_http_status(:success)
       end
