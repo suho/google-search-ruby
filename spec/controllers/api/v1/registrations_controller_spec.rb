@@ -4,15 +4,6 @@ require 'rails_helper'
 
 RSpec.describe API::V1::RegistrationsController, type: :controller do
   describe 'POST#create', devise_mapping: true do
-    context 'given an invalid oauth application' do
-      it 'returns forbidden status' do
-        params = { user: { email: 'test@test.test', password: 'test@test.test', password_confirmation: 'test@test.test' } }
-        post :create, params: params
-
-        expect(response).to have_http_status(:forbidden)
-      end
-    end
-
     context 'given a valid oauth application' do
       context 'given valid params' do
         it 'returns created status' do
@@ -84,6 +75,15 @@ RSpec.describe API::V1::RegistrationsController, type: :controller do
             expect(response).to have_http_status(:unprocessable_entity)
           end
         end
+      end
+    end
+
+    context 'given an invalid oauth application' do
+      it 'returns forbidden status' do
+        params = { user: { email: 'test@test.test', password: 'test@test.test', password_confirmation: 'test@test.test' } }
+        post :create, params: params
+
+        expect(response).to have_http_status(:forbidden)
       end
     end
   end
