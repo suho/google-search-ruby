@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe API::V1::TokensController, type: :controller do
+RSpec.describe API::V1::TokensController, type: :request do
   describe 'POST#revoke' do
     context 'given a valid oauth application' do
       it 'returns success status' do
