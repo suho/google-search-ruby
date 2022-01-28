@@ -47,7 +47,7 @@ module API
       end
 
       def set_keyword
-        @keyword = current_user.keywords.find_by!(id: params[:id])
+        @keyword = current_user.keywords.find(params[:id])
       end
 
       def permitted_params
