@@ -4,6 +4,11 @@
 
 This is a web application that will extract large amounts of data from the Google search results page.
 
+## Applications
+
+- Staging: [https://google-search-suv-staging.herokuapp.com/](https://google-search-suv-staging.herokuapp.com/)
+- Production: [https://google-search-suv.herokuapp.com/](https://google-search-suv.herokuapp.com/)
+
 ## Project Setup
 
 ### Prerequisites
